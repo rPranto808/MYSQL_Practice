@@ -112,6 +112,71 @@ alter table student rename to Std;
 select *from Std;
 
 
+CREATE TABLE EMP (
+    EMP_ID INT PRIMARY KEY,
+    NAME VARCHAR(50),
+    DEPT VARCHAR(50),
+    SALARY DECIMAL(10,2),
+    JOIN_DATE DATE
+);
+
+INSERT INTO EMP (EMP_ID, NAME, DEPT, SALARY, JOIN_DATE) VALUES 
+(1, 'John Doe', 'IT', 60000.50, '2020-06-15'),
+(2, 'Alice Smith', 'HR', 55000.00, '2019-08-20'),
+(3, 'Bob Johnson', 'Finance', 75000.75, '2018-03-10'),
+(4, 'Charlie Brown', 'IT', 62000.25, '2021-01-05'),
+(5, 'David Wilson', 'Marketing', 58000.00, '2022-07-12'),
+(6, 'Eve Adams', 'IT', 64000.90, '2017-09-30'),
+(7, 'Frank Thomas', 'HR', 53000.45, '2020-12-01'),
+(8, 'Grace Lee', 'Finance', 77000.60, '2016-05-25'),
+(9, 'Hank Miller', 'Marketing', 59000.80, '2021-09-10'),
+(10, 'Ivy Clark', 'IT', 67000.20, '2015-02-14');
+
+#Retrieve all employees ordered by salary in descending order.
+SELECT *FROM EMP ORDER BY SALARY DESC;
+
+#Find the employee with the minimum salary.
+SELECT MIN(SALARY) FROM EMP;
+
+#Count the total number of employees.
+SELECT COUNT(*) FROM EMP;
+
+#Find the maximum salary grouped by department.
+SELECT DEPT,MAX(SALARY) FROM EMP GROUP BY DEPT;
+
+SELECT *FROM EMP ORDER BY JOIN_DATE ASC;
+
+#Retrieve all employees sorted by salary in descending order.
+SELECT *FROM EMP ORDER BY  SALARY DESC;
+
+#Find employees who joined after 2020-01-01.
+SELECT *FROM EMP WHERE JOIN_DATE > '2020-01-01';
+
+#Aggregate Functions (SUM, AVG, MIN, MAX, COUNT)
+
+#total number of employees.
+SELECT COUNT(*) FROM EMP;
+
+#total salary paid to all employees.
+SELECT SUM(SALARY) FROM EMP;
+
+#
+SELECT AVG(SALARY) FROM EMP;
+
+SELECT MIN(SALARY) FROM EMP WHERE DEPT='HR' ;
+
+# GROUP BY and HAVING
+
+#number of employees in each department.
+SELECT DEPT,COUNT(*) FROM EMP GROUP BY DEPT;
+
+#average salary per department.
+SELECT DEPT,COUNT(*) FROM EMP  GROUP BY DEPT;
+#Find departments where the total salary is greater than 150,000.
+SELECT DEPT,SUM(SALARY) FROM EMP GROUP BY DEPT HAVING SUM(SALARY)>15000;
+
+#Find departments that have more than 2 employees.
+SELECT DEPT, COUNT(*) FROM EMP GROUP BY DEPT HAVING COUNT(*) > 2;
 
 
 
